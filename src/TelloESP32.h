@@ -1,4 +1,17 @@
-// TelloESP32.h
+/*!
+ * TelloESP32.h - Library for controlling DJI Ryze Tello drones using ESP32
+ * Created by sagar-koirala, 12-2024
+ * Released into the public domain.
+ *
+ * This library provides a comprehensive interface for controlling Tello drones
+ * using ESP32 microcontrollers. It supports:
+ * - Basic flight controls (takeoff, land, movement)
+ * - Video streaming
+ * - State monitoring (battery, height, speed, etc.)
+ * - Mission pad detection and navigation
+ * - Advanced flight maneuvers
+ */
+
 #ifndef TELLOESP32_H
 #define TELLOESP32_H
 
@@ -30,13 +43,14 @@
 #include <freertos/semphr.h>
 
 // Define constants for Tello ports
-#define TELLO_CMD_PORT  8889
-#define TELLO_STATE_PORT 8890
-#define TELLO_VIDEO_PORT 11111
+#define TELLO_CMD_PORT  8889    // Tello command port
+#define TELLO_STATE_PORT 8890   // Tello state port
+#define TELLO_VIDEO_PORT 11111  // Tello video stream port
 
 namespace TelloControl {
 
 // --- Enums ---
+// Status codes for command execution results
 enum class TelloStatus {
     OK,
     Timeout,
@@ -48,6 +62,7 @@ enum class TelloStatus {
     UnknownError
 };
 
+// Video configuration enums
 enum class VideoBitrate {
     BITRATE_AUTO,
     BITRATE_1MBPS,
@@ -79,12 +94,22 @@ enum class CommandType {
 };
 
 // --- TelloESP32 Class ---
+/**
+ * Main class for controlling the Tello drone
+ */
 class TelloESP32 {
 public:
+    // Constructor and destructor
     TelloESP32();
     ~TelloESP32();
 
-    // Connection and Initialization
+    /**
+     * Connect to Tello drone
+     * @param ssid The SSID of the Tello drone
+     * @param password The password (empty for Tello)
+     * @param timeout_ms Connection timeout in milliseconds
+     * @return Status of the connection attempt
+     */
     TelloStatus connect(const char *ssid, const char *password, unsigned long timeout_ms = 10000);
     void disconnect();
     bool isConnected() const { return connected; } // Check if connected (made const)

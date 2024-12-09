@@ -1,3 +1,8 @@
+/*
+  TelloESP32.cpp - Implementation of the TelloESP32 library
+  See header file for documentation
+*/
+
 // TelloESP32.cpp
 #include "TelloESP32.h"
 #include <Arduino.h>
@@ -30,7 +35,7 @@ const TelloESP32::StateFieldMapping TelloESP32::STATE_MAPPINGS[] = {
     {"temph", &TelloESP32::set_temperature_high}
 };
 
-// --- Constructor ---
+// --- Constructor Implementation ---
 TelloESP32::TelloESP32()
     : telloAddr(192, 168, 10, 1),
       telloPort(TELLO_CMD_PORT),
@@ -139,7 +144,7 @@ void TelloESP32::receiveTask(void *parameter) {
     vTaskDelete(NULL); // Self-delete the task
 }
 
-// --- Improved Connect Method ---
+// --- Connection Management ---
 TelloStatus TelloESP32::connect(const char *ssid, const char *password, unsigned long timeout_ms) {
     unsigned long startTime = millis();
     WiFi.begin(ssid, password);
