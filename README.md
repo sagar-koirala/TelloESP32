@@ -2,6 +2,8 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+![tello-image](./docs/img/telloImage.png)
+
 ## Overview
 
 Control your DJI Tello drone with an ESP32 microcontroller using this easy-to-use Arduino library!  Inspired by the [`djitellopy`](https://github.com/damiafuentes/DJITelloPy) Python library, [`TelloESP32`]()brings similar functionality to the Arduino ecosystem, enabling embedded Tello applications.
