@@ -2,6 +2,8 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+![tello-image](./docs/img/telloImage.png)
+
 ## Overview
 
 **TelloESP32** is a powerful and easy-to-use Arduino library that allows you to control DJI Tello drones using an ESP32 microcontroller. This library provides a comprehensive set of functions for flight control, video streaming, state monitoring, and more. It's designed to be intuitive for beginners while offering advanced features for experienced users.
