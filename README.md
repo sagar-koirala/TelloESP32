@@ -1,6 +1,6 @@
 # TelloESP32: Arduino Library for Controlling DJI Tello Drones with ESP32
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 
 ## Overview
 

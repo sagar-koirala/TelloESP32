@@ -1,6 +1,8 @@
 # Class Names
 TelloESP32          KEYWORD1
 TelloStatus         KEYWORD1
+ErrorCallback       KEYWORD1
+VideoDataCallback   KEYWORD1
 VideoBitrate        KEYWORD1
 VideoResolution     KEYWORD1
 VideoFPS            KEYWORD1
@@ -67,7 +69,7 @@ set_mission_pad_detection_direction KEYWORD2
 set_wifi_credentials KEYWORD2
 connect_to_wifi     KEYWORD2
 send_expansion_command KEYWORD2
-startVideoRecording KEYWORD2
+startVideoStream    KEYWORD2
 
 # Constants
 TELLO_CMD_PORT      LITERAL1
