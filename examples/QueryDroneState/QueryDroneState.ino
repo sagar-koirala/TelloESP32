@@ -1,87 +1,69 @@
+/* 
+  QueryDroneState.ino - Example code demonstrating how to query specific states
+  of a DJI Tello drone using command queries with the TelloESP32 library.
+  Source code: https://github.com/sagar-koirala/TelloESP32.git
+  API reference: https://github.com/sagar-koirala/TelloESP32?tab=readme-ov-file#query-commands
+*/
+
 #include "TelloESP32.h"
 
 using namespace TelloControl;
 
-// Tello drone credentials
-const char *TELLO_SSID = "TELLO-56CC13";
-const char *TELLO_PASSWORD = "";
+const char *TELLO_SSID = "TELLO-56CC13";  // Replace with your Tello's SSID
+const char *TELLO_PASSWORD = "";          // Tello's WiFi password (usually empty)
 
-TelloESP32 tello;
+TelloESP32 tello;  // Create an instance of the TelloESP32 class
+
+// Error handler callback function
+void telloErrorHandler(const char* command, const char* errorMessage) {
+    Serial.printf("[ERROR] Command '%s': %s\n", command, errorMessage);
+}
 
 void setup() {
     Serial.begin(115200);
-    Serial.println("TelloESP32 Basic Connection Example");
+    Serial.println("TelloESP32 Query Drone State Example");
     
+    // Set the error handler callback
+    tello.setErrorCallback(telloErrorHandler);
+
+    // Attempt to connect to the Tello drone
     TelloStatus status = tello.connect(TELLO_SSID, TELLO_PASSWORD);
     if (status != TelloStatus::OK) {
-        Serial.println("Failed to connect to Tello");
+        Serial.println("Connection failed!");
         return;
     }
     
-    Serial.println("Connected to Tello!");
-    delay(3000);
-    
-    // Query battery level
-    int battery = tello.query_battery();
-    Serial.print("Battery level: ");
-    Serial.print(battery);
-    Serial.println("%");
-
-    // Query height
-    int height = tello.query_height();
-    Serial.print("Height: ");
-    Serial.print(height);
-    Serial.println(" cm");
-
-    // Query speed
-    int speed = tello.query_speed();
-    Serial.print("Speed: ");
-    Serial.print(speed);
-    Serial.println(" cm/s");
-
-    // Query flight time
-    int flight_time = tello.query_time();
-    Serial.print("Flight time: ");
-    Serial.print(flight_time);
-    Serial.println(" s");
-
-    // Query temperature
-    int temperature = tello.query_temp();
-    Serial.print("Temperature: ");
-    Serial.print(temperature);
-    Serial.println(" °C");
-
-    // Query barometer
-    float barometer = tello.query_baro();
-    Serial.print("Barometer: ");
-    Serial.print(barometer);
-    Serial.println(" m");
-
-    // Query TOF distance
-    float tof = tello.query_tof();
-    Serial.print("TOF distance: ");
-    Serial.print(tof);
-    Serial.println(" cm");
-
-    // Query WiFi SNR
-    String wifi = tello.query_wifi();
-    Serial.print("WiFi SNR: ");
-    Serial.println(wifi);
-
-    // Query SDK version
-    String sdk = tello.query_sdk();
-    Serial.print("SDK version: ");
-    Serial.println(sdk);
-
-    // Query serial number
-    String sn = tello.query_sn();
-    Serial.print("Serial number: ");
-    Serial.println(sn);
-
-    tello.disconnect();
-    Serial.println("Tello disconnected!");
+    Serial.println("Connected to Tello successfully!");
 }
 
 void loop() {
-    // Empty
+    static unsigned long lastUpdate = 0;
+    
+    if (tello.isConnected() && (millis() - lastUpdate >= 2000)) {  // Every 2 seconds to avoid overloading with queries
+        Serial.println("\n--- Query Results ---");
+        
+        // Basic Status
+        Serial.printf("Battery: %d%%\n", tello.query_battery());
+        Serial.printf("Height: %d cm\n", tello.query_height());
+        Serial.printf("Flight time: %d s\n", tello.query_time());
+        Serial.printf("Speed: %d cm/s\n", tello.query_speed());
+        
+        // Environmental Data
+        Serial.printf("Temperature: %d°C\n", tello.query_temp());
+        Serial.printf("Barometer: %.2f m\n", tello.query_baro());
+        Serial.printf("TOF Distance: %.1f cm\n", tello.query_tof());
+        
+        // Connection Info
+        Serial.printf("WiFi SNR: %s\n", tello.query_wifi().c_str());
+        
+        // System Info
+        Serial.printf("SDK Version: %s\n", tello.query_sdk().c_str());
+        Serial.printf("Serial Number: %s\n", tello.query_sn().c_str());
+            
+        Serial.println("------------------");
+        lastUpdate = millis();
+    } else if (!tello.isConnected()) {
+        Serial.println("Connection lost!");
+        while (true); // Stop execution
+    }
 }

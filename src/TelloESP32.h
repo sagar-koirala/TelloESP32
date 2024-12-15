@@ -22,7 +22,7 @@
 
 // Debug logging control
 #ifndef TELLO_DEBUG
-#define TELLO_DEBUG 1  // Set to 1 to enable debug output
+#define TELLO_DEBUG 0  // Set to 1 to enable debug output
 #endif
 
 #if TELLO_DEBUG
@@ -117,10 +117,11 @@ public:
     // --- Command Sending ---
     TelloStatus sendCommand(const char *command);             // Send a command
     String getLastResponse() const;                           // Get the last response (made const)
+    String getLastErrorMessage() const;           // Get the last error message
 
     // --- Timeouts and Timing Constants ---
     static const unsigned long CONNECTION_TIMEOUT = 500;     // 10 seconds (for connection)
-    static const unsigned long RESPONSE_TIMEOUT = 7000;          // 7 seconds (for command responses)
+    static const unsigned long RESPONSE_TIMEOUT = 10000;          // 10 seconds (for command responses)
     static const unsigned long TIME_BTW_COMMANDS = 500;          // 500 ms between commands
     static const unsigned long TIME_BTW_RC_CONTROL_COMMANDS = 50; // 50 ms between RC control updates
 
@@ -197,6 +198,9 @@ public:
     typedef void (*VideoDataCallback)(const uint8_t *data, size_t length); // Callback function type for video data
     void setVideoDataCallback(VideoDataCallback callback);                 // Set the video data callback function
 
+    typedef void (*ErrorCallback)(const char* command, const char* errorMessage);
+    void setErrorCallback(ErrorCallback callback);
+
     // --- Mission Pad ---
     TelloStatus enable_mission_pads();
     TelloStatus disable_mission_pads();
@@ -220,6 +224,12 @@ public:
     // Start video stream without recording
     void startVideoStream();
 
+    /**
+     * Emergency stop - immediately stops all motors
+     * Use with caution! The drone will fall from its current position.
+     */
+    void emergency();
+
 private:
     // --- Internal Helper Functions ---
     TelloStatus _sendCommand(const char *command, CommandType type) const; // Handles both action and query commands internally
@@ -228,7 +238,7 @@ private:
     String readResponse() const; // Helper function for read
 
     // --- Network and Communication ---
-    bool connected;             // Flag to indicate if connected to Tello
+    bool connected = false;             // Flag to indicate if connected to Tello
     WiFiUDP udp;                 // UDP socket for commands
     WiFiUDP state_udp;           // UDP socket for state data
     WiFiUDP video_udp;           // UDP socket for video stream
@@ -259,6 +269,10 @@ private:
     mutable unsigned long last_received_command_timestamp; // Timestamp of the last received command
     mutable unsigned long last_rc_control_timestamp;      // Timestamp of the last RC control command
     
+    // --- Error Callback ---
+    ErrorCallback _errorCallback;
+    String lastErrorMessage; // To store the last error message
+
     // --- Video Streaming ---
     bool stream_on;                             // Flag to indicate if video streaming is enabled
     TaskHandle_t videoReceiveTaskHandle;        // Task handle for the video receive task
