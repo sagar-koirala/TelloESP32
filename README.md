@@ -1,6 +1,6 @@
 # TelloESP32: Arduino Library for Controlling DJI Tello Drones with ESP32
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 
 ## Overview
 
@@ -12,11 +12,9 @@ Control your DJI Tello drone with an ESP32 microcontroller using this easy-to-us
 * **ESP32 Optimized:** Leverages the ESP32's dual-core processor and WiFi capabilities for efficient communication and video processing.
 * **Flight Control:** Take off, land, move, rotate, and flip with simple functions.
 * **Video Streaming:** Receive and process live H.264 video data with a callback function. *(Note:  Resource intensive; consider lower resolutions/framerates)*.
-* **SD Card Recording:** Save the streamed H264 video to a mounted SD card.
 * **State Monitoring:** Access real-time telemetry like battery level, altitude, speed, temperature, and IMU data. Direct state access (faster) and query commands are provided.
 * **Mission Pad Support (Tello EDU):**  Interface with Tello mission pads for programmed flight.
 * **Network Configuration (Tello EDU):**  Change the Tello's WiFi SSID and password.
-* **Expansion Board Commands:** Send custom commands to compatible expansion boards.
 
 ## Getting Started
 
@@ -31,7 +29,6 @@ The [`examples`](./examples/)  folder contains practical demonstrations of key l
 
 * **Basic Flight:**  Simple takeoff, movement, and landing.
 * **Video Streaming:** Receiving video data and (optionally) displaying it or processing it.
-* **SD Card Recording:** Record and save your video stream.
 
 ## Usage
 
