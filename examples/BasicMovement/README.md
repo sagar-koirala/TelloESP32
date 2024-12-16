@@ -11,6 +11,11 @@ The drone will perform the following movements:
 3. Rotate 360 degrees
 4. Land safely
 
+## Usage Notes
+1. Replace `TELLO_SSID` with your Tello's SSID if different
+2. Make sure the Drone is in a open space with good lighting condition and has enough battery charge
+3. Set your Serial Monitor baud rate to 115200 to check the debug messages
+
 ## Expected Serial Output
 When running correctly, you should see output similar to this (timestamps will vary):
 ```

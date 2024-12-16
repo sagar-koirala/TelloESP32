@@ -48,9 +48,9 @@ void loop() {
         Serial.printf("Flight time: %d s\n", tello.get_flight_time());
         
         // Environmental Data
-        Serial.printf("Temperature: %.1°C\n", tello.get_temperature());
-        Serial.printf("Barometer: %.2 m\n", tello.get_barometer());
-        Serial.printf("TOF Distance: %.1 cm\n", tello.get_tof());
+        Serial.printf("Temperature: %.1f°C\n", tello.get_temperature());
+        Serial.printf("Barometer: %.2f m\n", tello.get_barometer());
+        Serial.printf("TOF Distance: %.1f cm\n", tello.get_tof());
         
         // Orientation
         Serial.printf("Pitch: %d°\n", tello.get_pitch());
@@ -60,7 +60,7 @@ void loop() {
         // Motion Data
         Serial.printf("Speed - X: %d, Y: %d, Z: %d cm/s\n", 
             tello.get_speed_x(), tello.get_speed_y(), tello.get_speed_z());
-        Serial.printf("Acceleration - X: %.2, Y: %.2, Z: %.2 cm/s²\n", 
+        Serial.printf("Acceleration - X: %.2f, Y: %.2f, Z: %.2f cm/s²\n", 
             tello.get_acceleration_x(), tello.get_acceleration_y(), tello.get_acceleration_z());
             
         Serial.println("------------------");

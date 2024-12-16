@@ -4,12 +4,6 @@ This example demonstrates how to query various state information directly from t
 
 Source code: https://github.com/sagar-koirala/TelloESP32.git
 
-## Features
-- Direct command queries
-- Comprehensive status information
-- Error handling with callback
-- Regular status updates
-
 ## About Query Commands
 The `query_` functions (like `query_battery()`, `query_height()`) send direct commands to the drone. These functions:
 - Get real-time data directly from the drone
@@ -18,17 +12,11 @@ The `query_` functions (like `query_battery()`, `query_height()`) send direct co
 - Useful when you need guaranteed current values
 - Should be used sparingly (2+ second intervals recommended)
 
-## Queried Information
-- Battery level
-- Height
-- Flight time
-- Speed
-- Temperature
-- Barometer reading
-- TOF Distance
-- WiFi SNR
-- SDK Version
-- Serial Number
+## Usage Notes
+1. Set your Serial Monitor baud rate to 115200
+2. Updates occur every 2 seconds while connected
+3. The program will stop if connection is lost
+4. Query commands are direct requests to the drone
 
 ## Expected Serial Output
 When running correctly, you should see output similar to this (timestamps will vary):
@@ -50,12 +38,6 @@ When running correctly, you should see output similar to this (timestamps will v
 14:36:51.621 -> Serial Number: 0TQDG66EDBB3NU
 14:36:51.621 -> ------------------
 ```
-
-## Usage Notes
-1. Set your Serial Monitor baud rate to 115200
-2. Updates occur every 2 seconds while connected
-3. The program will stop if connection is lost
-4. Query commands are direct requests to the drone
 
 ## Available Functions
 ### Query Commands

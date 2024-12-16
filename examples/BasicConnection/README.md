@@ -4,6 +4,11 @@ This example demonstrates how to establish a basic connection with a Tello drone
 
 Source code: https://github.com/sagar-koirala/TelloESP32.git
 
+## Usage Notes
+1. Set your Serial Monitor baud rate to 115200
+2. Replace `TELLO_SSID` with your Tello's SSID if different
+3. Always ensures safe disconnection
+
 ## Expected Serial Output
 When running correctly, you should see output similar to this (timestamps will vary):
 ```
@@ -14,11 +19,6 @@ When running correctly, you should see output similar to this (timestamps will v
 09:37:34.068 -> E (66705) wifi:NAN WiFi stop
 09:37:35.241 -> Disconnected.
 ```
-
-## Usage Notes
-1. Set your Serial Monitor baud rate to 115200
-2. Replace `TELLO_SSID` with your Tello's SSID if different
-3. Always ensures safe disconnection
 
 ## Available Functions
 ### Connection Management

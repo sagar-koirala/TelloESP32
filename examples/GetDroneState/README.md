@@ -11,16 +11,10 @@ The `get_` functions (like `get_battery()`, `get_height()`) provide immediate ac
 - Update automatically every ~100ms
 - Ideal for frequent status checks
 
-## Displayed Information
-- Battery level
-- Height
-- Flight time
-- Temperature
-- Barometer reading
-- TOF (Time of Flight) distance
-- Orientation (Pitch, Roll, Yaw)
-- Speed (X, Y, Z axes)
-- Acceleration (X, Y, Z axes)
+## Usage Notes
+1. Set your Serial Monitor baud rate to 115200
+2. Updates occur every second while connected
+3. The program will stop if connection is lost
 
 ## Expected Serial Output
 When running correctly, you should see output similar to this (timestamps will vary):
@@ -42,11 +36,6 @@ When running correctly, you should see output similar to this (timestamps will v
 10:15:26.524 -> Acceleration - X: 0.00, Y: 0.00, Z: 0.00 cm/s²
 10:15:26.524 -> ------------------
 ```
-
-## Usage Notes
-1. Set your Serial Monitor baud rate to 115200
-2. Updates occur every second while connected
-3. The program will stop if connection is lost
 
 ## Available Functions
 ### Direct State Getters

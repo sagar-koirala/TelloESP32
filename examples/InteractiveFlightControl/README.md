@@ -4,11 +4,13 @@ This example allows real-time control of the Tello drone using keyboard commands
 
 Source code: https://github.com/sagar-koirala/TelloESP32.git
 
-## Features
-- Interactive keyboard control
-- Real-time status updates
-- Error handling and feedback
-- Safe disconnection procedure
+## Usage Notes
+1. Replace `TELLO_SSID` with your Tello's SSID if different
+2. Make sure the Drone is in a open space with good lighting condition and has enough battery charge
+3. Set your Serial Monitor baud rate to 115200 to check the debug messages
+4. Enter commands as single letters (lowercase)
+5. Watch the status updates for battery level and height
+6. Use 'q' to safely land and disconnect
 
 ## Available Commands
 | Key | Action |
@@ -86,12 +88,7 @@ When running correctly, you should see output similar to this (timestamps will v
 13:04:51.341 -> Disconnected. Program ended.
 ```
 
-## Usage Notes
-1. Set your Serial Monitor baud rate to 115200
-2. Enter commands as single letters (lowercase)
-3. Watch the status updates for battery level and height
-4. Use 'q' to safely land and disconnect
-
+## Available Functions
 ### Flight Control
 
 *   **`TelloStatus takeoff()`:** Initiates takeoff.

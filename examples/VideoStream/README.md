@@ -6,8 +6,8 @@ Source code: https://github.com/sagar-koirala/TelloESP32.git
 
 ## Usage Notes
 1. Set your Serial Monitor baud rate to 115200
-2. Make sure you have enough RAM available on your ESP32
-3. Updates occur every second while connected
+2. Make sure you have enough RAM available on your ESP32 
+3. The video stream callback function is called in background, irrespective of the task on the loop function
 4. The program will stop if connection is lost
 
 ## Video Stream Details
